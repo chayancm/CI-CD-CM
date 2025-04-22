@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Show SSH Key (first few chars for debug, optional)
         run: |
           echo "${{ secrets.SSH_KEY }}" | head -c 100
@@ -23,4 +23,31 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          script: ./deploy.sh
+          script: |
+            echo "Starting deployment on EC2..."
+
+            # Navigate to project directory, clone repo if not present
+            if [ ! -d "CI-CD-CM" ]; then
+              echo "Repository not found, cloning it now..."
+              git clone https://github.com/chayancm/CI-CD-CM.git
+            fi
+
+            cd CI-CD-CM
+
+            # Pull the latest changes
+            echo "Pulling latest changes from GitHub..."
+            git pull origin main
+
+            # Install npm dependencies (if using Node.js)
+            echo "Installing dependencies..."
+            npm install
+
+            # Build the project (if required)
+            echo "Building project..."
+            npm run build
+
+            # Restart the application (adjust depending on your setup, e.g., for Node.js)
+            echo "Restarting application..."
+            pm2 restart app  # If using PM2 for Node.js apps
+
+            echo "Deployment completed successfully!"
