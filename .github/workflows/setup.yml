@@ -13,7 +13,9 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-        
+      - name: Show SSH Key (first few chars for debug, optional)
+        run: |
+                echo "${{ secrets.SSH_KEY }}" | head -c 100
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1
         with:
