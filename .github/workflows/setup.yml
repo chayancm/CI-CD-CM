@@ -33,7 +33,8 @@ jobs:
             fi
 
             cd CI-CD-CM
-
+            npm -v
+            node -v
             # Pull the latest changes
             echo "Pulling latest changes from GitHub..."
             git pull origin main
