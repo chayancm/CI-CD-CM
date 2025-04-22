@@ -15,20 +15,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Show SSH Key (first few chars for debug, optional)
         run: |
-                echo "${{ secrets.SSH_KEY }}" | head -c 100
+          echo "${{ secrets.SSH_KEY }}" | head -c 100
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1
         with:
-            host: 13.201.4.19
-            username: ubuntu
-            key: ${{ secrets.SSH_KEY }}
-            port: 22
-            script: |
-                echo "Hello, world!"
-                cd CI-CD-CM
-                git pull
-                npm install
-                npm run build
-                npm run start
-                echo "Hello, world!"
-
+          host: 13.201.4.19
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: ./deploy.sh
