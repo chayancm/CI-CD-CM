@@ -24,6 +24,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
+            # Load environment
+            source ~/.bashrc  # or ~/.profile
             echo "Starting deployment on EC2...."
 
             # Navigate to project directory, clone repo if not present
