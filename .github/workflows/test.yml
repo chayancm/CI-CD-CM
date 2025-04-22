@@ -1,0 +1,30 @@
+name: Github Actions CI
+run-name: ${GITHUB_WORKFLOW} - ${{ github.event_name }} - ${{ github.actor }}
+on: [push]
+jobs:
+    Explore-Github-Actions:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello, world!"
+            - run: echo "This is a test of Github Actions"
+            - run: "echo {{ github.event_name }} event"
+            - run: echo "name of the actor is ${{ github.actor }}"
+            - run: echo "name of the repository is ${{ github.repository }}"
+            - run: echo "name of the workflow is ${{ github.workflow }}"
+            - run: echo "name of the event is ${{ github.event_name }}"
+            - run: echo "name of the sha is ${{ github.sha }}"
+            - run: echo "name of the ref is ${{ github.ref }}"
+            - run: echo "name of the run id is ${{ github.run_id }}"
+            - run: echo "name of the run number is ${{ github.run_number }}"
+            - run: echo "name of the job is ${{ github.job }}"
+            - run: echo "name of the path is ${{ github.path }}"
+            - run: echo "name of the actor is ${{ github.actor }}"
+            - run: echo "name of the event is ${{ github.event }}"
+            - uses: actions/checkout@v2
+            - run: echo "the github repository is ${{ github.repository }} has been clonned to runner"
+            - name: List of files
+              run: |
+                echo "List of files in the repository"
+                ls -l
+                ls -la ${{ github.workspace }}
+                -run: echo: status is ${{ github.status}}
