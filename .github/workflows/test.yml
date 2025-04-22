@@ -27,4 +27,5 @@ jobs:
                 echo "List of files in the repository"
                 ls -l
                 ls -la ${{ github.workspace }}
-                -run: echo: status is ${{ github.status}}
+                echo "status is unknown or not defined"
+            - run: "echo: status is ${{ github.status}}"
