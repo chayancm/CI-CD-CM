@@ -24,7 +24,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            echo "Starting deployment on EC2..."
+            echo "Starting deployment on EC2...."
 
             # Navigate to project directory, clone repo if not present
             if [ ! -d "CI-CD-CM" ]; then
