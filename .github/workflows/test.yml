@@ -28,4 +28,4 @@ jobs:
                 ls -l
                 ls -la ${{ github.workspace }}
                 echo "status is unknown or not defined"
-            - run: "echo: status is ${{ github.status}}"
+            - run: echo "status is ${{ github.status}}"
